@@ -2,15 +2,22 @@
 class Employee :
     __data = {"name":None,"salary" : None,"office":None}
     # ระบบ
-    def __init__(self,name:str,salary:int,office = 'None') -> None :
-        try :
+    def __testforit(namein = 'str',salaryin = 1,officein = 'str') :
+        if type(namein) != str : raise TypeError('The variable "name" cannot be specified other than str.')
+        if type(salaryin) != int : raise TypeError('The variable "salary" cannot be specified other than int.')
+        if type(officein) != str : raise TypeError('The variable "office" cannot be specified other than str.')
+
+        return True
+
+    def __init__(self,name,salary,office = None) -> None :
+            Employee.__testforit(name,salary,office)
             name = str(name)
             salary = int(salary)
             office = str(office)
             self.__data["name"] = name
             self.__data["salary"] = salary
             self.__data["office"] = office
-        except ValueError : print('ERROR : Type does not match')
+            
     # help
     def help() -> str :
         print('สวัสดีนี่คือวิธีใช้ :\n1. เราต้องสร้าง object ก่อน list *โดย* ข้างบนข้ามแก้ไข ให้แก้ตรงที่สร้างวัตถุที่กำหนดไว้ให้\n2. คำสั่งสร้าง Object : <ชื่อ Object> = Employee(<ชื่อ>,<เงินเดือน>)\tตัวอย่าง : employeee001 = Employee\n')
@@ -26,20 +33,17 @@ class Employee :
     def __str__(self) -> str: return self.__data["name"]
     # ตั้งชื่อ/เงินเดือน/ตำแหน่ง
     def _setname(self,newname:str) -> None :
-        try :
-            newname = str(newname)
-            self.__data["name"] = newname
-        except ValueError : print('ERROR : Type does not match')
+        Employee.__testforit(newname)
+        newname = str(newname)
+        self.__data["name"] = newname
     def _setsalary(self,newsalary:int) -> None :
-        try :
-            newsalary = int(newsalary)
-            self.__data["salary"] = newsalary
-        except ValueError : print('ERROR : Type does not match')
+        Employee.__testforit(salaryin=newsalary)
+        newsalary = int(newsalary)
+        self.__data["salary"] = newsalary
     def _setoffice(self,newoffice = 'None') -> None :
-        try :
-            newoffice = str(newoffice)
-            self.__data["office"] = newoffice
-        except ValueError : print('ERROR : Type does not match')
+        Employee.__testforit(officein=newoffice)
+        newoffice = str(newoffice)
+        self.__data["office"] = newoffice
 
 # การสร้างวัตถุ
 Employee.help()

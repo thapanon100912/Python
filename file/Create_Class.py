@@ -2,7 +2,7 @@
 class Employee :
     __data = {"name":None,"salary" : None,"office":None}
     # ระบบ
-    def __init__(self,name:str,salary:int,office:str) -> None :
+    def __init__(self,name:str,salary:int,office = 'None') -> None :
         try :
             name = str(name)
             salary = int(salary)
@@ -35,7 +35,7 @@ class Employee :
             newsalary = int(newsalary)
             self.__data["salary"] = newsalary
         except ValueError : print('ERROR : Type does not match')
-    def _setoffice(self,newoffice:str) -> None :
+    def _setoffice(self,newoffice = 'None') -> None :
         try :
             newoffice = str(newoffice)
             self.__data["office"] = newoffice

@@ -30,7 +30,7 @@ try :
         if inpu == 'O' : return 'X'
 
     def printtable() :
-        print('    {}\n    {}\n    {}'.format(table_row1,table_row2,table_row3))
+        print('    {} | {} | {}\n    {} | {} | {}\n    {} | {} | {}'.format(table_row1[0],table_row1[1],table_row1[2],table_row2[0],table_row2[1],table_row2[2],table_row3[0],table_row3[1],table_row3[2]))
 
     def game(turnin,roundein) :
         global table_row1 , table_row2 , table_row3
@@ -80,6 +80,16 @@ try :
         elif table_row1[0] == 'O' and table_row2[1] == 'O' and table_row3[2] == 'O': return True , 'O'
         elif table_row1[2] == 'O' and table_row2[1] == 'O' and table_row3[0] == 'O': return True , 'O'
 
+        #   None
+        listnone = []
+        for i in table_row1 : listnone.append(i)
+        for i in table_row2 : listnone.append(i)
+        for i in table_row3 : listnone.append(i)
+        
+        if table_row1[0] != '1' and table_row1[1] != '2' and table_row1[2] != '3' and table_row2[0] != '4' and table_row2[1] != '5' and table_row2[2] != '6' and table_row3[0] != '7' and table_row3[1] != '8' and table_row3[2] != '9' :
+            return True , None
+
+
         else : return False , None
 
     x = 0
@@ -105,9 +115,9 @@ try :
 
                 if checker == True :
                     clearboard_and_rounde()
-                    print('\n{} Win!!!!!\n'.format(who_wins))
-                    if who_wins == 'X' : x += 1 ; break
-                    if who_wins == 'O' : o += 1 ; break
+                    if who_wins == 'X' : x += 1 ; print('\n{} Win!!!!!\n'.format(who_wins)) ; break
+                    if who_wins == 'O' : o += 1 ; print('\n{} Win!!!!!\n'.format(who_wins)) ; break
+                    if who_wins == None : print('\nNo one win.\n') ; break
                 
                 turn , rounde = game(turn,rounde)
 except : print('\n\n\n\n\n\n\nERROR PLEASE TRY AGAIN') ; input('Press any key to exit : ')

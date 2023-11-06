@@ -1,6 +1,6 @@
 # การสร้าง Class
 class Employee :
-    __data = {"name":None,"salary" : None,"office":''}
+    __data = {"name":None,"salary" : None,"office":None}
     # ระบบ
     def __testforit(namein = 'str',salaryin = 1,officein = 'str') :
         if type(namein) != str : raise TypeError('The variable "name" cannot be specified other than str.')
@@ -9,7 +9,7 @@ class Employee :
 
         return True
 
-    def __init__(self,name,salary,office = None) -> None :
+    def __init__(self,name,salary,office = '') -> None :
             Employee.__testforit(name,salary,office)
             name = str(name)
             salary = int(salary)

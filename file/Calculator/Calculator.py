@@ -1,5 +1,5 @@
 #เครื่องคิดเลข
-#V.9.2
+#V.9.6
 #fuc
 import time
 def pl() : #pl
@@ -11,7 +11,7 @@ def pl() : #pl
         ansTT = TT+TT2
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansTT)
+        print ('\nanswer : ' , ansTT ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -25,21 +25,21 @@ def pldot() : #pl.
         ansTTf = TTf+TTf2
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansTTf)
+        print ('\nanswer : ' , ansTTf ,"\n\n")
     except:
         print('[ERROR]')
     finally:
         pass
 def mi() : #mi
     try:
-        MMf = float(input('setter : '))
+        MMf = int(input('setter : '))
         print (MMf)
-        MMf2 = (float(input('subtrahend : ')))
+        MMf2 = (int(input('subtrahend : ')))
         print (MMf2)
         ansMMf = MMf-MMf2
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansMMf)
+        print ('\nanswer : ' , ansMMf ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -53,7 +53,7 @@ def midot() : #mi.
         ansMMf = MMf-MMf2
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansMMf)
+        print ('\nanswer : ' , ansMMf ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -67,7 +67,7 @@ def mu() :#mu
         ansT = T*T2
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansT)
+        print ('\nanswer : ' , ansT ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -81,7 +81,7 @@ def mudot () : #mu.
         ansTf = Tf * Tf2
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansTf)
+        print ('\nanswer : ' , ansTf ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -97,8 +97,8 @@ def di() : #di
         ansMnoDOTss = M % M2
         print('wait...')
         time.sleep(2)
-        print ('answer : ' , ansMnoDOT)
-        print ('//' , ansMnoDOTss)
+        print ('\nanswer : ' , ansMnoDOT)
+        print ('//' , ansMnoDOTss ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -113,8 +113,8 @@ def didot() : #di.
         ansMfnoDOTss = Mf % Mf2
         print('wait...')
         time.sleep(2)
-        print ('answer : ' , ansMfD0T)
-        print ('// = ' , ansMfnoDOTss)
+        print ('\nanswer : ' , ansMfD0T)
+        print ('// = ' , ansMfnoDOTss ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -128,7 +128,7 @@ def ex() : #ex
         ansex = int(ex**ex2)
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansex)
+        print ('\nanswer : ' , ansex ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -142,7 +142,7 @@ def exdot() : #exdot
         ansexf = float(exf**exf2)
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansexf)
+        print ('\nanswer : ' , ansexf ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -155,7 +155,7 @@ def fac() : #!
         ansfac = math.factorial(fac)
         print('wait...')
         time.sleep(1)
-        print ('answer : ' , ansfac)
+        print ('\nanswer : ' , ansfac ,"\n\n")
     except:
         print('[ERROR]')
     finally:
@@ -176,7 +176,7 @@ def ploo(*ploo) :
 print('starting calculator.....')
 time.sleep(3)
 print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
-print ('V.9.2\twhat new')
+print ('V.9.6\twhat new')
 while True :
     Home = input("pl mi mu di ex *. ! ms1 ms2 leave : ")
     if Home =='pl' :
@@ -319,7 +319,7 @@ while True :
             print ('answer : =')
     elif Home == 'what new' :
         print ('Programs that support only Thai language to see')
-        print ('1.เปลื่ยน +-*/ เป็น fuc\t2.แก้บัค')
+        print ('1.ทำให้ดูง่ายขึ้น')
     elif Home =='leave' :
         inle=input('do you want to shutting down? (YES , NO):\n')
         if inle == 'YES' :

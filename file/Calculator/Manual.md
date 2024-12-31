@@ -1,10 +1,10 @@
 # Command
   | = Or
 
-  # System Function
+  ## System Function
     <What's new | whats new> = View Update
 
-  # Function
+  ## Function
     <pl | Pl> = Addition
       ** A + B
     
@@ -28,6 +28,6 @@
     <!> = Factorial
       ** A!
   
-  # Function
+  ## Function
     <move | Move> = Move Up
     <leave | Leave> = Leave

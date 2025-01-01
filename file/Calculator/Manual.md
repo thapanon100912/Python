@@ -4,8 +4,12 @@
 ### Warning
 * **Please make sure the calculator file is in their folder.**
 ### What's New?
-* History System
+**Version 11.0**
+* Add History System
 * Fixed Bug
+
+**Version 11.2**
+* Add Toggle History System
 
 
 ## Commands
@@ -46,4 +50,5 @@ Note: `|` mean **or**
 * `Move` = Move Up
 * `His | Histories` = View Histories
   * *[You can type `-` after showing histories to clear histories.]*
+  * *[You can type `0` after showing histories to toggle histories.]*
 * `Leave | Exit` = Leave & Save

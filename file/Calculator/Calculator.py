@@ -1,6 +1,6 @@
 # Calculator.py
 # Version 11.0
-VERSION = "11.0"
+VERSION = "11.2"
 
 # Import things
 import math
@@ -18,6 +18,7 @@ ERROR = "An expected error occurred:"
 
 # DataFile
 Data = {
+    "SaveHistories" : True ,
     "Histories" : []
 }
 
@@ -76,7 +77,8 @@ def Plus() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        Data["Histories"].append(f"{a} + {b} = {Answer}")
+        if Data["SaveHistories"] == True :
+            Data["Histories"].append(f"{a} + {b} = {Answer}")
     except Exception as Reason :
         print(ERROR , Reason)
 
@@ -97,7 +99,8 @@ def Minus() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        Data["Histories"].append(f"{a} - {b} = {Answer}")
+        if Data["SaveHistories"] == True :
+            Data["Histories"].append(f"{a} - {b} = {Answer}")
     
     except Exception as Reason :
         print(ERROR , Reason)
@@ -119,7 +122,8 @@ def Times() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        Data["Histories"].append(f"{a} * {b} = {Answer}")
+        if Data["SaveHistories"] == True :
+            Data["Histories"].append(f"{a} * {b} = {Answer}")
 
     except Exception as Reason :
         print(ERROR , Reason)
@@ -154,7 +158,8 @@ def Divide() :
         else : raise
 
         # Save
-        Data["Histories"].append(f"{a} / {b} = {Answer_WithDecemal}")
+        if Data["SaveHistories"] == True :
+            Data["Histories"].append(f"{a} / {b} = {Answer}")
     except ZeroDivisionError :
         print(ZERODIVISIONERROR)
     except Exception as Reason :
@@ -177,7 +182,8 @@ def Power() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        Data["Histories"].append(f"{a} ^ {b} = {Answer}")
+        if Data["SaveHistories"] == True :
+            Data["Histories"].append(f"{a} ^ {b} = {Answer}")
 
     except Exception as Reason :
         print(ERROR , Reason)
@@ -228,7 +234,8 @@ def Root() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        Data["Histories"].append(f"{a} of {b} = {Answer}")
+        if Data["SaveHistories"] == True :
+            Data["Histories"].append(f"{a} of {b} = {Answer}")
 
     except ValueError :
         print(f"{VALUEERROR}\n\n")
@@ -251,7 +258,8 @@ def Factorial() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        Data["Histories"].append(f"{a}! = {Answer}")
+        if Data["SaveHistories"] == True :
+            Data["Histories"].append(f"{a}! = {Answer}")
     except ValueError :
         print(f"{VALUEERROR}\n\n")
     except Exception as Reason :
@@ -310,14 +318,13 @@ class DataHandler :
 def WhatNew() :
     print("")
     print(
-        "Version 10.0"
-        "\n1. Change Code Stucture",
-        "\n2. Change Some Feature", "\n"
+        "Version 11.0"
+        "\n1. Add History System",
+        "\n2. Fixed Bug", "\n"
     )
     print(
-        "Version 10.5",
-        "\n1. Add Save System",
-        "\n2. Fixed Bug", "\n\n"
+        "Version 11.2",
+        "\n1. Add Toggle History System", "\n\n"
     )
 
 def Move() :
@@ -337,11 +344,12 @@ def ShowHistories() :
         for i in range(len(histories)) :
             print(histories[i])
 
-    print("------------------------------")
+    print(f"-----------------------------\nSave History? = {Data["SaveHistories"]}\n-----------------------------")
 
     # Del?
-    if input("\n") == "-" :
+    AddOn = input("\n")
 
+    if AddOn == "-" : # Clear History
         if input("\nAre you sure you want to clear histories? [y/n]\n= ").lower() == "y" :
             Data["Histories"] = []
 
@@ -350,6 +358,17 @@ def ShowHistories() :
             print("\nHistories cleared.\n\n")
         else :
             print("\n\n")
+    elif AddOn == "0" : # Toggle History
+        State = Data["SaveHistories"]
+        WillState = not Data["SaveHistories"]
+
+        Data["SaveHistories"] = not Data["SaveHistories"]
+
+        time.sleep(SLEEP_TIME)
+
+        print(f"\n{State} -> {WillState}\n\n")
+
+
 
 def Run(HistoriesFile, Data) :
     print(VERSION_MESSAGE)

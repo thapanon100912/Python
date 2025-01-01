@@ -1,5 +1,5 @@
 # Calculator.py
-# Version 11.0
+# Version 11.2
 VERSION = "11.2"
 
 # Import things

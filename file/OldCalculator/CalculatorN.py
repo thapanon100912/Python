@@ -1,6 +1,6 @@
 # Calculator.py
-# Version 11.0
-VERSION = "11.2"
+# Version 10.5
+VERSION = "10.5"
 
 # Import things
 import math
@@ -12,13 +12,11 @@ import json
 VERSION_MESSAGE = f"Version {VERSION} : What's new"
 SLEEP_TIME = 1
 CLOSE_TIME = 4
-VALUEERROR = "Invalid input!: Try again."
-ZERODIVISIONERROR = "Cann't divided by 0!\n\n"
-ERROR = "An expected error occurred:"
+VALUEERROR = "Unknown Value: Please Type Again"
+ZERODIVISIONERROR = "Have Something Error: Cann't divided by 0"
 
 # DataFile
-Data = {
-    "SaveHistories" : True ,
+DataFile = {
     "Histories" : []
 }
 
@@ -77,10 +75,9 @@ def Plus() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        if Data["SaveHistories"] == True :
-            Data["Histories"].append(f"{a} + {b} = {Answer}")
+        DataFile["Histories"].append(f"{a} + {b} = {Answer}")
     except Exception as Reason :
-        print(ERROR , Reason)
+        print("Have Something Error :" , Reason)
 
 def Minus() :
     try :
@@ -99,11 +96,10 @@ def Minus() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        if Data["SaveHistories"] == True :
-            Data["Histories"].append(f"{a} - {b} = {Answer}")
+        DataFile["Histories"].append(f"{a} - {b} = {Answer}")
     
     except Exception as Reason :
-        print(ERROR , Reason)
+        print("Have Something Error :" , Reason)
 
 def Times() :
     try :
@@ -122,11 +118,10 @@ def Times() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        if Data["SaveHistories"] == True :
-            Data["Histories"].append(f"{a} * {b} = {Answer}")
+        DataFile["Histories"].append(f"{a} * {b} = {Answer}")
 
     except Exception as Reason :
-        print(ERROR , Reason)
+        print("Have Something Error :" , Reason)
 
 def Divide() :
     try :
@@ -142,24 +137,18 @@ def Divide() :
         time.sleep(SLEEP_TIME)
 
         if Remander == 0 :
-            print ("Answer =" , Answer_WithDecemal ,"\n\n")
+            print ("Answer =" , Answer ,"\n\n")
         elif Remander != 0 :
-            print ("Answer =" , Answer_WithDecemal, "\n")
+            print ("Answer =" , Answer)
+            print ("Remander =" , Remander ,"\n")
 
             if input() == "=" : ## Plus
                 time.sleep(SLEEP_TIME)
-
-                print ("\nAnswer =" , Answer)
-                print ("Remander =" , Remander ,"\n\n")
-                
-            
-
-            
+                print ("\nAnswer =" , Answer_WithDecemal ,"\n\n")
         else : raise
 
         # Save
-        if Data["SaveHistories"] == True :
-            Data["Histories"].append(f"{a} / {b} = {Answer}")
+        DataFile["Histories"].append(f"{a} / {b} = {Answer_WithDecemal}")
     except ZeroDivisionError :
         print(ZERODIVISIONERROR)
     except Exception as Reason :
@@ -182,11 +171,10 @@ def Power() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        if Data["SaveHistories"] == True :
-            Data["Histories"].append(f"{a} ^ {b} = {Answer}")
+        DataFile["Histories"].append(f"{a} ^ {b} = {Answer}")
 
     except Exception as Reason :
-        print(ERROR , Reason)
+        print("Have Something Error :" , Reason)
 
 def Root() :
     try :
@@ -217,9 +205,6 @@ def Root() :
                 print(VALUEERROR)
         
         # Calculate
-        if b <= 0 :
-            raise ValueError
-
         if a == "Sqrt" :
             Answer = math.sqrt(b)
         if a == "Cbrt" :
@@ -234,106 +219,97 @@ def Root() :
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        if Data["SaveHistories"] == True :
-            Data["Histories"].append(f"{a} of {b} = {Answer}")
+        DataFile["Histories"].append(f"{a} of {b} = {Answer}")
 
-    except ValueError :
-        print(f"{VALUEERROR}\n\n")
     except Exception as Reason :
-        print(ERROR , Reason)
+        print("Have Something Error :" , Reason)
 
 def Factorial() :
     try :
         # Ask
         a = Ask1number()
         
-        if int(a) != a or math.fabs(a) != a:
-            raise ValueError
-
         # Calculate
-        Answer = math.factorial(int(a))
+        Answer = math.factorial(a)
 
         # Show Answer
         time.sleep(SLEEP_TIME)
         print ("Answer =" , Answer ,"\n\n")
 
         # Save
-        if Data["SaveHistories"] == True :
-            Data["Histories"].append(f"{a}! = {Answer}")
-    except ValueError :
-        print(f"{VALUEERROR}\n\n")
+        DataFile["Histories"].append(f"{a}! = {Answer}")
     except Exception as Reason :
-        print(ERROR , Reason)
+        print("Have Something Error :" , Reason)
 
-# Save Class
-class DataHandler :
-    Address_script = os.path.abspath(__file__)
-    Address_scriptFolder = os.path.dirname(Address_script)
-    Address_dataCenter = os.path.join(Address_scriptFolder, "Data")
-    
-      
-    def __init__(self, file_name:str) :
-        # Save File Name
-        self.__file_name = file_name
-        self.__Address_file = os.path.join(self.Address_dataCenter, self.__file_name)
+# Save Functions
+def SaveData(Data, file_address) :
+    try :
+        with open(file_address,"w") as file :
+            json.dump(Data, file, indent= 4)
+    except FileNotFoundError :
+        print("Unable to save : Data dir has destroyed or don't have data dir \nFile is not save.")
+    except Exception as Reason:
+        print("Unable to save : " , Reason, "\nFile is not save.")
 
-        # Check Folder
-        if not os.path.exists(self.Address_dataCenter) :
-            os.mkdir(self.Address_dataCenter)
+def GetData(file_address) :
+    try :
+        with open(file_address, "r") as file :
+            data = json.load(file)
+        return data
+    except FileNotFoundError :
+        print("Unable to save : Data dir has destroyed or don't have data dir \nFile is not save.")
+    except Exception as Reason:
+        print("Unable to getData : " , Reason, "\nFile is not save.")
+
+def CreateDataFile(EmptyData) :
+    try :
+        global DataFile
+
+        script_address = os.path.abspath(__file__) # Find Script Address
+        script_dir_address = os.path.dirname(script_address) # Find Dir Of Scipt Address
+
+        # Mk dir
+        dir_address = os.path.join(script_dir_address, "Data") # Find Dir (Data Dir)
+
+        #If dir isn't exist:
+        if not os.path.exists(dir_address) :
+            os.mkdir(dir_address)
         
-        # Check File
-        if os.path.exists(self.__Address_file) :
-            self.EverExists = True
-        else :
-            self.EverExists = False
-            
-    def save(self, data) :
-        try :
-            with open(self.__Address_file, "w") as file :
-                json.dump(data, file, indent=4) # Push
-        except FileNotFoundError as e:
-            print(f"Error saving data: File Not Found -- {e}")
-        except Exception as e :
-            print("Error saving data:", e)
-    
-    def get(self) :
-        try :
-            with open(self.__Address_file,"r") as file :
-                data = json.load(file) # Pull
-            return data # Send
-        except FileNotFoundError as e:
-            print(f"Error saving data: File Not Found -- {e} -- Restart the program.")
-        except Exception as e :
-            print("Error geting data:", e)
+        file_address = os.path.join(dir_address, "Data.json") # Find File (File to crate)
+        
+        #If file isn't exist:
+        if not os.path.exists(file_address) :
+            with open(file_address,"w") as file : #Create File
+                file.write("")
 
-    def DoFirst(self, EmptyData) :
-        if self.EverExists == False :
-            self.save(EmptyData)
-            return EmptyData
-        else :
-            return self.get()
+            SaveData(EmptyData, file_address)
+        else : DataFile = GetData(file_address) # If no: get data
 
+        return file_address
+    except Exception as Reason :
+        print("Have Something Error :" , Reason)
 
 # Functions
 def WhatNew() :
     print("")
     print(
-        "Version 11.0"
-        "\n1. Add History System",
-        "\n2. Fixed Bug", "\n"
+        "Version 10.0"
+        "\n1. Change Code Stucture",
+        "\n2. Change Some Feature", "\n"
     )
     print(
-        "Version 11.2",
-        "\n1. Add Toggle History System", "\n\n"
+        "Version 10.5",
+        "\n1. Add Save System",
+        "\n2. Fixed Bug", "\n\n"
     )
 
 def Move() :
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
 def ShowHistories() :
-    global Data
+    global DataFile
 
-    histories = Data["Histories"]
+    histories = DataFile["Histories"]
 
     # Show
     print("\n--- Calculation Histories ---")
@@ -344,33 +320,21 @@ def ShowHistories() :
         for i in range(len(histories)) :
             print(histories[i])
 
-    print(f"-----------------------------\nSave History? = {Data["SaveHistories"]}\n-----------------------------")
+    print("------------------------------")
 
     # Del?
-    AddOn = input("\n")
+    if input("\n") == "-" :
 
-    if AddOn == "-" : # Clear History
         if input("\nAre you sure you want to clear histories? [y/n]\n= ").lower() == "y" :
-            Data["Histories"] = []
+            DataFile["Histories"] = []
 
             time.sleep(SLEEP_TIME)
             
             print("\nHistories cleared.\n\n")
         else :
             print("\n\n")
-    elif AddOn == "0" : # Toggle History
-        State = Data["SaveHistories"]
-        WillState = not Data["SaveHistories"]
 
-        Data["SaveHistories"] = not Data["SaveHistories"]
-
-        time.sleep(SLEEP_TIME)
-
-        print(f"\n{State} -> {WillState}\n\n")
-
-
-
-def Run(HistoriesFile, Data) :
+def Run(File_AddressToSave:str) :
     print(VERSION_MESSAGE)
 
     while True :
@@ -410,7 +374,7 @@ def Run(HistoriesFile, Data) :
             ShowHistories()
 
         elif Input in ("leave", "exit") :
-            HistoriesFile.save(Data)
+            SaveData(DataFile, File_AddressToSave)
 
             time.sleep(CLOSE_TIME)
 
@@ -420,10 +384,10 @@ def Run(HistoriesFile, Data) :
         
         ## For Error
         else :
-            print("\nInvalid command.\n\n")
+            print("\nError\n\n")
 
 # Code
-DataFile = DataHandler("All Data.json")
-Data = DataFile.DoFirst(Data)
+file_address = CreateDataFile(DataFile)
+DataFile = GetData(file_address)
 
-Run(DataFile, Data)
+Run(file_address)

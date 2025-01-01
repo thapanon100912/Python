@@ -1,38 +1,49 @@
-# Commands Version 10.0
-## Meaning
-- | = Or
+# Version 11.0
 
-## System Function
-* `What's new | whats new` = View Update
+## Information
+### Warning
+* **Please make sure the calculator file is in their folder.**
+### What's New?
+* History System
+* Fixed Bug
 
-## Function
-* `pl | Pl` = Addition
+
+## Commands
+Note: `|` mean **or**
+
+### System Function
+* `What's new | Whats new` = View Update
+
+### Function
+* `Pl | Plus` = Addition
   * **A + B**
-* `mi | Mi` = Subtraction
+* `Mi | Minus` = Subtraction
   * **A - B**
 
 ---
 
-* `mu | Mu` = Multiplication
+* `Mu | Times` = Multiplication
   * **A \* B**
-* `di | Di` = Division
+* `Di | Divide` = Division
   * **A / B**
-  * *[You can type <=> after showing the answer to show the answer with decimal.]*
+  * *[You can type `=` after showing the answer to show the answer with decimal.]*
 
 ---
 
-* `ex | Ex` = Exponentiation
+* `Ex | Power` = Exponentiation
   * **A^B**
-* `rt | Rt` = Root
+* `Rt | Root` = Root
   * **Sqrt of ... | Cbrt of ...**
-  * **Square Root Mode** when A = `Sqrt | 1`
-  * **Cube Root Mode** when A = `Cbrt | 2`
+  * **Square Root Mode** when A = `Sqrt | 2`
+  * **Cube Root Mode** when A = `Cbrt | 3`
 
 ---
 
 * `!` = Factorial
   * **A!**
 
-## Helping Function
-* `move | Move` = Move Up
-* `leave | Leave` = Leave
+### Helping Function
+* `Move` = Move Up
+* `His | Histories` = View Histories
+  * *[You can type `-` after showing histories to clear histories.]*
+* `Leave | Exit` = Leave & Save
